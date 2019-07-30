@@ -14,6 +14,17 @@ class MechanicianCollection extends ResourceCollection
      */
     public function toArray($request)
     {
+        
         return parent::toArray($request);
+        // return[
+        //     'names' => $this->names,
+        //     'email' => $this->email,
+        //     'phone' => $this->phone,
+        //     'address' => $this->address,
+            // 'garage' => $this->garage->name
+            // 'href' => [
+            //     'specialities' => route('specialities.index', $this->id)
+            // ]
+        // ];
     }
 }

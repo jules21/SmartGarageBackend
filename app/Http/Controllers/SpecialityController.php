@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\speciality;
+use App\Speciality;
+use App\Mechanician;
 use Illuminate\Http\Request;
 
 class SpecialityController extends Controller
@@ -12,9 +13,13 @@ class SpecialityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Mechanician $mechanician)
     {
         //
+        // return Speciality::all();
+        foreach($mechanician->specialities as $specialities)
+        // return $specialities;
+        return $mechanician->specialities;
     }
 
     /**

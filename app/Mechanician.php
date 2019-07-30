@@ -11,8 +11,8 @@ class Mechanician extends Model
     {
         $this->belongsTo('App\Garage');
     }
-    public function specialities()
-    {
-        $this->belongToMany('App\Speciality','mechanician_speciality','mechanician_id','speciality_id');
-    }
+    // public function specialities()
+    // {
+    //     $this->belongsToMany('App\Speciality','mechanician_speciality','mechanician_id','speciality_id');
+    // }
 }

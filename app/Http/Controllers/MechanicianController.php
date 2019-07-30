@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mechanician;
 use Illuminate\Http\Request;
 use App\Http\Resources\Mechanician\MechanicianResource;
+use App\Http\Resources\Mechanician\MechanicianCollection;
 
 
 class MechanicianController extends Controller
@@ -17,7 +18,9 @@ class MechanicianController extends Controller
     public function index()
     {
         //
-        return Mechanician::all();
+        // return new MechanicianCollection(Mechanician::all());
+        return MechanicianCollection::collection(Mechanician::all());
+        // return Mechanician::all();
     }
 
     /**
