@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources\Mechanician;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+// use Illuminate\Http\Resources\Json\ResourceCollection;
+Use Illuminate\Http\Resources\Json\Resource ;
 
-class MechanicianCollection extends ResourceCollection
+class MechanicianCollection extends Resource
 {
     /**
      * Transform the resource collection into an array.
@@ -15,16 +16,13 @@ class MechanicianCollection extends ResourceCollection
     public function toArray($request)
     {
         
-        return parent::toArray($request);
-        // return[
-        //     'names' => $this->names,
-        //     'email' => $this->email,
-        //     'phone' => $this->phone,
-        //     'address' => $this->address,
-            // 'garage' => $this->garage->name
-            // 'href' => [
-            //     'specialities' => route('specialities.index', $this->id)
-            // ]
-        // ];
+        // return parent::toArray($request);
+        return[
+            'names' => $this->names,
+            'email' => $this->email,
+            'href' => [
+                'link' => route('mechanicians.show', $this->id)
+            ]
+        ];
     }
 }

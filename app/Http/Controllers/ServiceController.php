@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\service;
 use Illuminate\Http\Request;
+use App\Http\Resources\Service\ServiceResource;
 
 class ServiceController extends Controller
 {
@@ -12,9 +13,10 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Garage $garage)
     {
         //
+        return ServiceResource::collection($garage->services);
     }
 
     /**

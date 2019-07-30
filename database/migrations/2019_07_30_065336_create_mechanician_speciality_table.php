@@ -17,7 +17,7 @@ class CreateMechanicianSpecialityTable extends Migration
             $table->bigIncrements('id');
             $table->integer('mechanician_id');
             $table->integer('speciality_id');
-            $table->timestamps();
+            // $table->timestamps();
             // $table->foreign('mechanician_id')->references('id')->on('mechanicians')->onDelete('cascade');
             // $table->foreign('speciality_id')->references('id')->on('specialities')->onDelete('cascade');
             // $table->timestamps();

@@ -16,6 +16,6 @@ class Service extends Model
     // }
     public function garages()
     {
-        $this->belongsToMany('App\Service','garage_service','service_id','garage_id');
+       return $this->belongsToMany('App\Service','garage_service','service_id','garage_id');
     }
 }

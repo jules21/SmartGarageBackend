@@ -8,7 +8,7 @@ class Garage extends Model
 {
     public function mechanicians()
     {
-        $this->hasMany('App\Mechanician');
+        return $this->hasMany('App\Mechanician');
     }
     // public function services()
     // {
@@ -16,6 +16,6 @@ class Garage extends Model
     // }
     public function services()
     {
-        $this->belongsToMany('App\Service','garage_service','garage_id','service_id');
+       return $this->belongsToMany('App\Service','garage_service','garage_id','service_id');
     }
 }

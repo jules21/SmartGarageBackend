@@ -13,6 +13,6 @@ class Speciality extends Model
     // }
     public function mechanicians()
     {
-        $this->belongToMany('App\Mechanician','mechanician_speciality','speciality_id','mechanician_id');
+        return $this->belongToMany('App\Mechanician','mechanician_speciality','speciality_id','mechanician_id');
     }
 }

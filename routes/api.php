@@ -24,4 +24,11 @@ Route::group(['prefix'=>'mechanicians'], function()
     Route::apiResource('/{mechanician}/specialities', 'SpecialityController');
 });
 Route::apiResource('spareparts', 'SparepartController');
-Route::apiResource('services', 'ServiceController');
+
+
+Route::group(['prefix'=>'garages'], function()
+{
+    Route::apiResource('/{garage}/services', 'ServiceController');
+    Route::get('/{garage}/mechanicians', 'GarageController@mech')->name('garage.mechanicians');
+   
+});

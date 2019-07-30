@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Garage;
 use Illuminate\Http\Request;
+use App\Http\Resources\Garage\GarageResource;
+use App\Http\Resources\Garage\GarageCollection;
+use App\Http\Resources\Mechanician\MechanicianResource;
+use App\Http\Resources\Mechanician\MechanicianCollection;
 
 class GarageController extends Controller
 {
@@ -15,6 +19,7 @@ class GarageController extends Controller
     public function index()
     {
         //
+        return GarageCollection::collection(Garage::all());
     }
 
     /**
@@ -47,6 +52,11 @@ class GarageController extends Controller
     public function show(Garage $garage)
     {
         //
+    }
+    public function mech(Garage $garage)
+    {
+        //
+        return MechanicianCollection::collection($garage->mechanicians);
     }
 
     /**

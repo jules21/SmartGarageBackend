@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Sparepart;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\Resource;
 
-class SparepartCollection extends ResourceCollection
+class SparepartCollection extends Resource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,10 @@ class SparepartCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [
+            'name' =>$this->name,
+            'address' =>$this->address
+        ];
     }
 }

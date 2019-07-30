@@ -20,6 +20,7 @@ class MechanicianController extends Controller
         //
         // return new MechanicianCollection(Mechanician::all());
         return MechanicianCollection::collection(Mechanician::all());
+        // return MechanicianCollection::collection(Mechanician::paginate(20));
         // return Mechanician::all();
     }
 

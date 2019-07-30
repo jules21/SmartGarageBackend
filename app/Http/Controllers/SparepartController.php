@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\sparepart;
+use App\Sparepart;
 use Illuminate\Http\Request;
+use App\Http\Resources\Sparepart\SparepartCollection;
 
 class SparepartController extends Controller
 {
@@ -15,6 +16,7 @@ class SparepartController extends Controller
     public function index()
     {
         //
+        return SparepartCollection::collection(Sparepart::all());
     }
 
     /**

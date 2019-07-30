@@ -17,7 +17,7 @@ class CreateGarageServiceTable extends Migration
             $table->bigIncrements('id');
             $table->integer('garage_id');
             $table->integer('service_id');
-            $table->timestamps();
+            // $table->timestamps();
             // $table->foreign('garage_id')->references('id')->on('garages')->onDelete('cascade');
             // $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });

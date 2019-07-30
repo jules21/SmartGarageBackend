@@ -20,7 +20,7 @@ class MechanicianResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'address' => $this->address,
-            // 'garage' => $this->garage->name
+            'garage' => $this->garage->name,
             'href' => [
                 'specialities' => route('specialities.index', $this->id)
             ]
