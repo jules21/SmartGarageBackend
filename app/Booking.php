@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class booking extends Model
+class Sooking extends Model
 {
     //
     public function user()
