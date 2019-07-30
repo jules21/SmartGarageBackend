@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\mechanician;
+use App\Mechanician;
 use Illuminate\Http\Request;
+use App\Http\Resources\Mechanician\MechanicianResource;
+
 
 class MechanicianController extends Controller
 {
@@ -15,16 +17,7 @@ class MechanicianController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Mechanician::all();
     }
 
     /**
@@ -46,19 +39,10 @@ class MechanicianController extends Controller
      */
     public function show(mechanician $mechanician)
     {
-        //
+        
+        return new MechanicianResource($mechanician);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\mechanician  $mechanician
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(mechanician $mechanician)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

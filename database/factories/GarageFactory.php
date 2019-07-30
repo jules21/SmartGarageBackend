@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Garage::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->word,
         'address' => $faker->address,
         // 'email' => $faker->unique()->safeEmail,
         // 'email_verified_at' => now(),

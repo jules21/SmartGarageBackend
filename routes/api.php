@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('mechanicians', 'MechanicianController');
-// Route::apiResource('garages', 'GarageController');
-// Route::apiResource('specialities', 'SpecialityController');
-// Route::apiResource('spareparts', 'SparepartController');
-// Route::apiResource('services', 'ServicesController');
+Route::apiResource('garages', 'GarageController');
+Route::apiResource('specialities', 'SpecialityController');
+Route::apiResource('spareparts', 'SparepartController');
+Route::apiResource('services', 'ServicesController');
