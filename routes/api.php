@@ -17,8 +17,8 @@ use Illuminate\Http\Request;
 Route::post('/user', 'AuthController@details');
 
 // API Authentication Functions
-Route::post('/login', 'AuthController@login');
-Route::post('/register', 'AuthController@register');
+Route::post('/login', 'api\AuthController@login');
+Route::post('/register', 'api\AuthController@register');
 
 // api reset user password
 Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');
@@ -31,18 +31,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('mechanicians', 'MechanicianController');
-Route::apiResource('garages', 'GarageController');
+Route::apiResource('mechanicians', 'api\MechanicianController');
+
+Route::apiResource('garages', 'api\GarageController');
 Route::group(['prefix'=>'mechanicians'], function()
 {
-    Route::apiResource('/{mechanician}/specialities', 'SpecialityController');
+    Route::apiResource('/{mechanician}/specialities', 'api\SpecialityController');
 });
-Route::apiResource('spareparts', 'SparepartController');
+
+Route::apiResource('spareparts', 'api\SparepartController');
 
 
 Route::group(['prefix'=>'garages'], function()
 {
-    Route::apiResource('/{garage}/services', 'ServiceController');
-    Route::get('/{garage}/mechanicians', 'GarageController@mech')->name('garage.mechanicians');
+    Route::apiResource('/{garage}/services', 'api\ServiceController');
+    Route::get('/{garage}/mechanicians', 'api\GarageController@mech')->name('garage.mechanicians');
    
 });
