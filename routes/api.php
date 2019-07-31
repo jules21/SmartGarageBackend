@@ -13,6 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
+// API Function to get user details
+Route::post('/user', 'AuthController@details');
+
+// API Authentication Functions
+Route::post('/login', 'AuthController@login');
+Route::post('/register', 'AuthController@register');
+
+// api reset user password
+Route::post('password/email', 'Auth\ForgotPasswordController@getResetToken');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

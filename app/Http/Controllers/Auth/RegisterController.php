@@ -47,12 +47,17 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+    {   
+    $phonePattern = '/\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*/';
+
+    return Validator::make($data, [
+        'firstName' => 'required|string|max:255',
+        'lastName' => 'required|string|max:255',
+        'phoneNumber' => 'required|unique:users|min:10|max:15|regex:' . $phonePattern,
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'roleId' => 'required',
+    ]);
     }
 
     /**
@@ -63,10 +68,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'phoneNumber' => $data['phoneNumber'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => $data['roleId'],
         ]);
+        return $user;
     }
 }
