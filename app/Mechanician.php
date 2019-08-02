@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mechanician extends Model
 {
+
+  protected $guarded = [];
+
     //
     public function garage()
     {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\api;
 
-
 use App\Http\Controllers\Controller;
 use App\Mechanician;
 use Illuminate\Http\Request;
@@ -34,6 +33,32 @@ class MechanicianController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate(
+            $request,
+            [
+           "names" => 'required',
+           "email" =>'required',
+           "phone" => 'required',
+           "location" =>'required',
+           "password" =>'required',
+           "address" =>'required',
+
+       ]
+        );
+        $memechanician = Mechanician::create([
+            "names" => $request->input('names'),
+            "email" => $request->input('email'),
+            "phone" => $request->input('phone'),
+            "location" => $request->input('location'),
+            "address" => $request->input('address'),
+            "garage_id" => $request->input('garage_id'),
+            "password" => $request->input('password')
+          ]);
+        if ($memechanician) {
+            return response()->json(['success'=>'mechanician registered successful']);
+        } else {
+            return response()->json(['error'=>'Registration failed please try again later!']);
+        }
     }
 
     /**
@@ -44,7 +69,6 @@ class MechanicianController extends Controller
      */
     public function show(mechanician $mechanician)
     {
-        
         return new MechanicianResource($mechanician);
     }
 
@@ -58,7 +82,44 @@ class MechanicianController extends Controller
      */
     public function update(Request $request, mechanician $mechanician)
     {
-        //
+        // dd($request->all());
+        $this->validate(
+            $request,
+            [
+         "names" => 'required',
+         "email" =>'required',
+         "phone" => 'required',
+         "location" =>'required',
+         "password" =>'required',
+         "address" =>'required',
+
+     ]
+      );
+        $memechanician = Mechanician::find($mechanician->id);
+        $memechanician->names = $request->input('names');
+        $memechanician->email = $request->input('email');
+        $memechanician->phone = $request->input('phone');
+        $memechanician->location = $request->input('location');
+        $memechanician->address = $request->input('address');
+        $memechanician->garage_id = $request->input('garage_id');
+        $memechanician->password = $request->input('password');
+
+
+        // $memechanician = Mechanician::where('id', $mechanician->id)->update([
+        //   "names" => $request->input('names'),
+        //   "email" => $request->input('email'),
+        //   "phone" => $request->input('phone'),
+        //   "location" => $request->input('location'),
+        //   "address" => $request->input('address'),
+        //   "garage_id" => $request->input('garage_id'),
+        //   "password" => $request->input('password')
+        // ]);
+        // if ($memechanician) {
+        if ($memechanician->save()) {
+            return response()->json(['success'=>'mechanician update successful']);
+        } else {
+            return response()->json(['error'=>'upating failed please try again later!']);
+        }
     }
 
     /**
@@ -70,5 +131,11 @@ class MechanicianController extends Controller
     public function destroy(mechanician $mechanician)
     {
         //
+        $mechanician = Mechanician::where('id', $mechanician->id);
+        if ($mechanician->delete()) {
+            return response()->json(['success'=>'mechanician deleted successful']);
+        } else {
+            return response()->json(['error'=>'delete mechanician failed please try again later!']);
+        }
     }
 }

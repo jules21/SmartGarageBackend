@@ -16,12 +16,12 @@ class CreateMechaniciansTable extends Migration
         Schema::create('mechanicians', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('names');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
             $table->string('address');
             $table->string('location')->nullable();
-            $table->string('garage_id');
+            $table->string('garage_id')->nullable();
             $table->timestamps();
             // $table->foreign('garage_id')->references('id')->on(garages)->onDelete(cascade);
         });
