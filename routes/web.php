@@ -18,6 +18,13 @@ Route::get('/dashboard', function () {
     return view('layouts.master');
 });
 
+Route::group(['prefix'=>'admin'], function ()
+{    
+    Route::resource('mechanicians', 'MechanicianController');
+    Route::resource('garages', 'GarageController');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

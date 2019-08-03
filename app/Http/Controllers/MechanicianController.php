@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mechanician;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\Mechanician\MechanicianResource;
 use App\Http\Resources\Mechanician\MechanicianCollection;
-
 
 class MechanicianController extends Controller
 {
@@ -17,22 +17,35 @@ class MechanicianController extends Controller
      */
     public function index()
     {
-        //
-        // return new MechanicianCollection(Mechanician::all());
-        return MechanicianCollection::collection(Mechanician::all());
-        // return MechanicianCollection::collection(Mechanician::paginate(20));
-        // return Mechanician::all();
+    $mechanicians = Mechanician::all();
+    return view('mechanician.index', compact('mechanicians'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create()
     {
         //
+        return view('mechanician.create');
+    }
+    public function store(Request $request)
+    {
+        $mechanician = Mechanician::create([
+            'names' => $request->get('names'),
+            'email'=> $request->get('email'),
+            'password'=> Hash::make($request->get('password')),
+            'phone'=> $request->get('phone'),
+            'address'=> $request->get('address'),
+            'location'=> $request->get('location'),
+            'garage_id'=> $request->get('garage_id'),
+
+          ]);
+  if($mechanician)
+  {
+      return back()->with('success', 'You have created new mechanician named '. $mechanician->name);
+  }
+  else
+  {
+      return back()->withInput();
+  }
     }
 
     /**
@@ -41,23 +54,42 @@ class MechanicianController extends Controller
      * @param  \App\mechanician  $mechanician
      * @return \Illuminate\Http\Response
      */
-    public function show(mechanician $mechanician)
+    public function show(Mechanician $mechanician)
     {
-        
-        return new MechanicianResource($mechanician);
+        $mechanician = Mechanician::find($mechanician->id);
+          return view('mechanician.show', compact('mechanician'));
+
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\mechanician  $mechanician
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, mechanician $mechanician)
+    public function edit(Mechanician $mechanician)
     {
         //
+          $mechanician = Mechanician::find($mechanician->id);
+          return view('mechanician.edit', compact('mechanician'));
+ 
+    }
+
+    public function update(Request $request, Mechanician $mechanician)
+    {
+                //
+                $Updatemechanician = Mechanician::where('id', $mechanician->id)
+                ->update(
+            [
+                'names' => $request->get('names'),
+                'email'=> $request->get('email'),
+                'password'=> Hash::make($request->get('password')),
+                'phone'=> $request->get('phone'),
+                'address'=> $request->get('address'),
+                'location'=> $request->get('location'),
+                'garage_id'=> $request->get('garage_id'),
+            ]);
+              if($Updatemechanician)
+                         {      
+                          return back()->with('success', 'mechanician updated successful');
+                         }
+              else
+                  return back()->withInput();
     }
 
     /**
@@ -66,8 +98,16 @@ class MechanicianController extends Controller
      * @param  \App\mechanician  $mechanician
      * @return \Illuminate\Http\Response
      */
-    public function destroy(mechanician $mechanician)
+    public function destroy(Mechanician $mechanician)
     {
-        //
+        $deletemechanician = Mechanician::where('id', $mechanician->id)->delete();
+
+        if ($deletemechanician) {
+            # code...
+            return redirect('admin/mechanicians')->with('success', 'mechanician deleted Successfully');
+        }else
+        {
+            return redirect()->back()->withInput();
+        }
     }
 }

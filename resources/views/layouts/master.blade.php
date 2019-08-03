@@ -37,23 +37,15 @@
                 </a></div>
             <nav class="navbar-custom">
                 <ul class="navbar-right d-flex list-inline float-right mb-0">
-                    <li class="dropdown notification-list d-none d-sm-block">
-                        <form role="search" class="app-search">
-                            <div class="form-group mb-0"><input type="text" class="form-control" placeholder="Search.."> <button type="submit"><i class="fa fa-search"></i></button></div>
-                        </form>
-                    </li>
-                    <li class="dropdown notification-list"><a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false"><i class="ti-bell noti-icon"></i>
-<!--                    <span class="badge badge-pill badge-danger noti-icon-badge">3</span>-->
-                    </a>
-
-                    </li>
+  
                     <li class="dropdown notification-list">
                         <div class="dropdown notification-list nav-pro-img"><a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <!-- <img src="{{asset('assets/images/user-avatar.png')}}" alt="user" class="rounded-circle"> -->
                             <i class="ti-user"></i>
                         </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown">
-                                <!-- item--> <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a>
+                                <!-- item--> 
+                                <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5"></i> Profile</a> -->
                                 <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> Logout</a>
 
@@ -88,21 +80,19 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu" id="side-menu">
                         <li class="menu-title">DashBoard</li>
-                        <li><a href="{{url('admin/dashboard')}}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Profile</span></a></li>
+                        <!-- <li><a href="{{url('admin/dashboard')}}" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Profile</span></a></li> -->
                         <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account-settings-variant"></i><span> Mechanician <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                             <ul class="submenu">
-                             {{-- 
-                                <li><a href="{{route('institutions.index')}}">All Institutions</a></li>
-                                <li><a href="{{route('institutions.create')}}">Add New Institution</a></li> -->
-                                <li><a href="email-read.html">Intitution Members</a></li> --}}
+                             
+                                <li><a href="{{route('mechanicians.index')}}">All mechanicians</a></li>
+                                <li><a href="{{route('mechanicians.create')}}">Add New mechanician</a></li> 
                             </ul>
                         </li>
                         <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-webhook"></i><span> Garage <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                             <ul class="submenu">
-                            {{--
-                                <li><a href="{{route('memberships.index')}}">All Memberships</a></li>
-                                <li><a href="{{route('memberships.create')}}">Add New Membership</a></li>
-                                <li><a href="{{route('memberships.create')}}">Categories</a></li>  --}}
+                           
+                                <li><a href="{{route('garages.index')}}">All garages</a></li>
+                                <li><a href="{{route('garages.create')}}">Add New garage</a></li>
                             </ul>
                         </li>
 

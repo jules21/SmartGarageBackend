@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Garage;
 use Illuminate\Http\Request;
-use App\Http\Resources\Garage\GarageResource;
-use App\Http\Resources\Garage\GarageCollection;
-use App\Http\Resources\Mechanician\MechanicianResource;
-use App\Http\Resources\Mechanician\MechanicianCollection;
 
 class GarageController extends Controller
 {
@@ -18,8 +14,8 @@ class GarageController extends Controller
      */
     public function index()
     {
-        //
-        return GarageCollection::collection(Garage::all());
+        $garages = Garage::all();
+        return view('garage.index', compact('garages'));
     }
 
     /**
@@ -29,18 +25,28 @@ class GarageController extends Controller
      */
     public function create()
     {
-        //
+        return view('garage.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
-        //
+        $garage = Garage::create([
+            'name' => $request->get('name'),
+            'address'=> $request->get('address'),
+            'description'=> $request->get('description'),
+            'phone'=> $request->get('phone'),
+            'location'=> $request->get('location'),
+
+          ]);
+  if($garage)
+  {
+      return back()->with('success', 'new garage created successful');
+  }
+  else
+  {
+      return back()->withInput();
+  }
     }
 
     /**
@@ -51,23 +57,16 @@ class GarageController extends Controller
      */
     public function show(Garage $garage)
     {
-        //
-    }
-    public function mech(Garage $garage)
-    {
-        //
-        return MechanicianCollection::collection($garage->mechanicians);
+        $garage = Garage::find($garage->id);
+        return view('garage.show', compact('garage'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Garage  $garage
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Garage $garage)
     {
-        //
+        $garage = Garage::find($garage->id);
+        return view('garage.edit', compact('garage'));
+
     }
 
     /**
@@ -79,7 +78,21 @@ class GarageController extends Controller
      */
     public function update(Request $request, Garage $garage)
     {
-        //
+        $Updategarage = Garage::where('id', $garage->id)
+        ->update(
+    [
+        'name' => $request->get('name'),
+        'address'=> $request->get('address'),
+        'description'=> $request->get('description'),
+        'phone'=> $request->get('phone'),
+        'location'=> $request->get('location'),
+    ]);
+      if($Updategarage)
+                 {      
+                  return back()->with('success', 'garage updated successful');
+                 }
+      else
+          return back()->withInput();
     }
 
     /**
@@ -90,6 +103,13 @@ class GarageController extends Controller
      */
     public function destroy(Garage $garage)
     {
-        //
+        $deletegarage = Garage::where('id', $garage->id)->delete();
+
+        if ($deletegarage) {
+            return redirect('admin/garages')->with('success', 'garage deleted Successfully');
+        }else
+        {
+            return redirect()->back()->withInput();
+        }
     }
 }

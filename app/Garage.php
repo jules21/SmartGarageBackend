@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Garage extends Model
 {
+    protected $guarded = [];
     public function mechanicians()
     {
         return $this->hasMany('App\Mechanician');

@@ -17,7 +17,9 @@ class CreateGaragesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('address');
+            $table->string('phone')->nullable();
             $table->string('location')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
