@@ -22,6 +22,10 @@ Route::group(['prefix'=>'admin'], function ()
 {    
     Route::resource('mechanicians', 'MechanicianController');
     Route::resource('garages', 'GarageController');
+
+    Route::resource('services', 'ServiceController');
+    Route::resource('specialities', 'SpecialityController');
+    Route::resource('spareparts', 'SparepartController');
 });
 
 

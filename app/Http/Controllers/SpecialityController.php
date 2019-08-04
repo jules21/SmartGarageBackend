@@ -14,13 +14,10 @@ class SpecialityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Mechanician $mechanician)
+    public function index()
     {
-        return SpecialityResource::collection($mechanician->specialities);
-        // return Speciality::all();
-        // // foreach($mechanician->specialities as $specialities)
-        // // // return $specialities;
-        // return $mechanician->specialities;
+        $specialities = Speciality::all();
+        return view('specialities.index', compact('specialities'));
     }
 
     /**
@@ -31,6 +28,7 @@ class SpecialityController extends Controller
     public function create()
     {
         //
+        return view('specialities.create');
     }
 
     /**
@@ -41,7 +39,18 @@ class SpecialityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $specialities = Speciality::create([
+            'name' => $request->get('name'),
+            'description'=> $request->get('description'),
+          ]);
+        if($specialities)
+        {
+            return back()->with('success', 'new mech speciality created successful');
+        }
+        else
+        {
+            return back()->withInput();
+        }
     }
 
     /**
@@ -50,9 +59,10 @@ class SpecialityController extends Controller
      * @param  \App\speciality  $speciality
      * @return \Illuminate\Http\Response
      */
-    public function show(speciality $speciality)
+    public function show(Speciality $speciality)
     {
-        //
+        $speciality = Speciality::find($speciality->id);
+        return view('specialities.show', compact('speciality'));
     }
 
     /**
@@ -61,9 +71,10 @@ class SpecialityController extends Controller
      * @param  \App\speciality  $speciality
      * @return \Illuminate\Http\Response
      */
-    public function edit(speciality $speciality)
+    public function edit(Speciality $speciality)
     {
-        //
+        $speciality = Speciality::find($speciality->id);
+        return view('specialities.edit', compact('speciality'));
     }
 
     /**
@@ -73,9 +84,20 @@ class SpecialityController extends Controller
      * @param  \App\speciality  $speciality
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, speciality $speciality)
+    public function update(Request $request, Speciality $speciality)
     {
-        //
+        $Updatespeciality = Speciality::where('id', $speciality->id)
+        ->update(
+    [
+        'name' => $request->get('name'),
+        'description'=> $request->get('description'),
+    ]);
+      if($Updatespeciality)
+                 {      
+                  return back()->with('success', 'speciality updated successful');
+                 }
+      else
+          return back()->withInput();
     }
 
     /**
@@ -84,8 +106,15 @@ class SpecialityController extends Controller
      * @param  \App\speciality  $speciality
      * @return \Illuminate\Http\Response
      */
-    public function destroy(speciality $speciality)
+    public function destroy(Speciality $speciality)
     {
-        //
+        $deletespecialities = Speciality::where('id', $speciality->id)->delete();
+
+        if ($deletespecialities) {
+            return redirect('admin/specialities')->with('success', 'speciality deleted Successfully');
+        }else
+        {
+            return redirect()->back()->withInput();
+        }
     }
 }

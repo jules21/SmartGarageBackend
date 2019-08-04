@@ -15,8 +15,8 @@ class SparepartController extends Controller
      */
     public function index()
     {
-        //
-        return SparepartCollection::collection(Sparepart::all());
+        $spareparts = Sparepart::all();
+        return view('sparepart.index', compact('spareparts'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SparepartController extends Controller
      */
     public function create()
     {
-        //
+        return view('sparepart.create');
     }
 
     /**
@@ -37,7 +37,22 @@ class SparepartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sparepart = Sparepart::create([
+            'name' => $request->get('name'),
+            'address'=> $request->get('address'),
+            'description'=> $request->get('description'),
+            'phone'=> $request->get('phone'),
+            'location'=> $request->get('location'),
+
+          ]);
+  if($sparepart)
+  {
+      return back()->with('success', 'new sparepart store created successful');
+  }
+  else
+  {
+      return back()->withInput();
+  }
     }
 
     /**
@@ -48,7 +63,9 @@ class SparepartController extends Controller
      */
     public function show(sparepart $sparepart)
     {
-        //
+        $sparepart = Sparepart::find($sparepart->id);
+        return view('sparepart.show', compact('sparepart'));
+
     }
 
     /**
@@ -59,7 +76,8 @@ class SparepartController extends Controller
      */
     public function edit(sparepart $sparepart)
     {
-        //
+        $sparepart = Sparepart::find($sparepart->id);
+        return view('sparepart.edit', compact('sparepart'));
     }
 
     /**
@@ -71,7 +89,21 @@ class SparepartController extends Controller
      */
     public function update(Request $request, sparepart $sparepart)
     {
-        //
+        $Updatesparepart = Sparepart::where('id', $sparepart->id)
+        ->update(
+    [
+        'name' => $request->get('name'),
+        'address'=> $request->get('address'),
+        'description'=> $request->get('description'),
+        'phone'=> $request->get('phone'),
+        'location'=> $request->get('location'),
+    ]);
+      if($Updatesparepart)
+                 {      
+                  return back()->with('success', 'sparepart store updated successful');
+                 }
+      else
+          return back()->withInput();
     }
 
     /**
@@ -82,6 +114,13 @@ class SparepartController extends Controller
      */
     public function destroy(sparepart $sparepart)
     {
-        //
+        $deletesparepart = Sparepart::where('id', $sparepart->id)->delete();
+
+        if ($deletesparepart) {
+            return redirect('admin/spareparts')->with('success', 'sparepart store deleted Successfully');
+        }else
+        {
+            return redirect()->back()->withInput();
+        }
     }
 }

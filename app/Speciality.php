@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Speciality extends Model
 {
+    protected $guarded = [];
     //
     // public function mechanician()
     // {

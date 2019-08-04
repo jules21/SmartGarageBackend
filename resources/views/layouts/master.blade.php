@@ -64,8 +64,8 @@
                     <li class="float-left"><button class="button-menu-mobile open-left waves-effect"><i class="mdi mdi-menu"></i></button></li>
                     <li class="d-none d-sm-block">
                         <div class="dropdown pt-3 d-inline-block"><a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">New Mechanician</a> <a class="dropdown-item" href="#">New Garage</a> <a class="dropdown-item" href="#">New Service</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="#">New speciality</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="{{route('mechanicians.create')}}">New Mechanician</a> <a class="dropdown-item" href="{{route('garages.create')}}">New Garage</a> <a class="dropdown-item" href="{{route('services.create')}}">New Service</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('specialities.create')}}">New speciality</a>
                             </div>
                         </div>
                     </li>
@@ -98,30 +98,28 @@
 
                         <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-gauge"></i><span> Garage Services <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                             <ul class="submenu">
-                            {{-- 
-                                <li><a href="{{route('courses.index')}}">All Courses</a></li>
-                                <li><a href="{{route('courses.create')}}">Add new Courses</a></li>
-                                <li><a href="{{route('coursecategories.index')}}">Course Categories</a></li> --}}
+                            
+                                <li><a href="{{route('services.index')}}">All services</a></li>
+                                <li><a href="{{route('services.create')}}">Add new services</a></li>
                                 
                             </ul>
                         </li>
                         <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-dumbbell"></i><span> Mechanician Speciality <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                             <ul class="submenu">
-                            {{--
-                                <li><a href="{{route('books.index')}}">View All Books</a></li>
-                                <li><a href="{{route('books.create')}}">Add New Book</a></li>
-                                <li><a href="{{route('bookcategories.index')}}">Book Category</a></li>
-                                --}}
+                            
+                                <li><a href="{{route('specialities.index')}}">View All specialities</a></li>
+                                <li><a href="{{route('specialities.create')}}">Add New speciality</a></li>
+                               
                             </ul>
                         </li>
 
-                         <!-- <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email-outline"></i><span> Trainings <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
+                        <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email-outline"></i><span> Spareparts <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                             <ul class="submenu">
-                            {{--
-                                <li><a href="{{route('trainings.index')}}">View All</a></li>
-                                <li><a href="{{route('trainings.create')}}">Create New</a></li>--}}
+                           
+                                <li><a href="{{route('spareparts.index')}}">View All</a></li>
+                                <li><a href="{{route('spareparts.create')}}">Create New</a></li>
                             </ul>
-                        </li> -->
+                        </li> 
 
                          <!-- <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email-outline"></i><span>Events <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                             <ul class="submenu">

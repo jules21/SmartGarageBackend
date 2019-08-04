@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\service;
+use App\Service;
 use Illuminate\Http\Request;
-use App\Http\Resources\Service\ServiceResource;
 
 class ServiceController extends Controller
 {
@@ -13,10 +12,10 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Garage $garage)
+    public function index()
     {
-        //
-        return ServiceResource::collection($garage->services);
+        $services = Service::all();
+        return view('service.index', compact('services'));
     }
 
     /**
@@ -26,7 +25,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('service.create');
     }
 
     /**
@@ -37,7 +36,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service = Service::create([
+            'name' => $request->get('name'),
+            'description'=> $request->get('description'),
+          ]);
+        if($service)
+        {
+            return back()->with('success', 'new service created successful');
+        }
+        else
+        {
+            return back()->withInput();
+        }
     }
 
     /**
@@ -46,9 +56,11 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(service $service)
+    public function show(Service $service)
     {
-        //
+        $service = Service::find($service->id);
+        return view('service.show', compact('service'));
+
     }
 
     /**
@@ -57,9 +69,10 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(service $service)
+    public function edit(Service $service)
     {
-        //
+        $service = Service::find($service->id);
+        return view('service.edit', compact('service'));
     }
 
     /**
@@ -69,9 +82,20 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, service $service)
+    public function update(Request $request, Service $service)
     {
-        //
+        $Updateservice = Service::where('id', $service->id)
+        ->update(
+    [
+        'name' => $request->get('name'),
+        'description'=> $request->get('description'),
+    ]);
+      if($Updateservice)
+                 {      
+                  return back()->with('success', 'service updated successful');
+                 }
+      else
+          return back()->withInput();
     }
 
     /**
@@ -80,8 +104,15 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(service $service)
+    public function destroy(Service $service)
     {
-        //
+        $deleteservice = Service::where('id', $service->id)->delete();
+
+        if ($deleteservice) {
+            return redirect('admin/services')->with('success', 'service deleted Successfully');
+        }else
+        {
+            return redirect()->back()->withInput();
+        }
     }
 }

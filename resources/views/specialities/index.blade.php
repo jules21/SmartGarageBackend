@@ -13,12 +13,12 @@
                                 <div class="card-body">
                                           @include('partials.success')
         @include('partials.error')
-                                    <h4 class="mt-0 header-title">All services</h4>
+                                    <h4 class="mt-0 header-title">All specialities</h4>
                                     <p class="text-muted m-b-30">
                                         &nbsp;
                                     </p>
-                                    @if($services->isEmpty())
-                                    <p class="alert alert-info">No. of services found: 0</p>
+                                    @if($specialities->isEmpty())
+                                    <p class="alert alert-info">No. of specialities found: 0</p>
                                     @else
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
@@ -30,16 +30,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           @foreach($services as $service)
+                                           @foreach($specialities as $speciality)
                                             <tr>
-                                                <td>{{$service->name}}</td>
+                                                <td>{{$speciality->name}}</td>
                                                 <td>
-                                                    {{ str_limit($service->description, $limit = 70, $end = '...') }}
+                                                    {{ str_limit($speciality->description, $limit = 70, $end = '...') }}
                                                 </td>
-                                                <td>{{$service->created_at->diffForHumans()}}</td>
+                                                <td>{{$speciality->created_at->diffForHumans()}}</td>
                                                              <td>
-                                                    <a href="{{route('services.show', [$service->id])}}" class="btn btn-success">show</a>
-                                                    <a href="{{route('services.edit', [$service->id])}}" class="btn btn-info">edit</a>
+                                                    <a href="{{route('specialities.show', [$speciality->id])}}" class="btn btn-success">show</a>
+                                                    <a href="{{route('specialities.edit', [$speciality->id])}}" class="btn btn-info">edit</a>
 <a
  href="#"
   onClick="
@@ -50,7 +50,7 @@
                           document.getElementById('delete-form').submit();
                       }" class="btn btn-danger">delete
 </a>
-<form action="{{route('services.destroy', [$service->id])}}" method="post" style="display:none;" id="delete-form">
+<form action="{{route('specialities.destroy', [$speciality->id])}}" method="post" style="display:none;" id="delete-form">
     <input type="hidden" name="_method" value="delete">
     {{csrf_field()}}
 </form>
