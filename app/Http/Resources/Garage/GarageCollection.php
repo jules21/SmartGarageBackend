@@ -19,9 +19,9 @@ class GarageCollection extends Resource
             'name' =>$this->name,
             'address' =>$this->address,
             'href' =>[
-                // 'mechanicians'=> route(api/garages/{garage})
-                'mechanicians' => route('garage.mechanicians', $this->id),
-                'services' => route('garages.index', $this->id),
+                'link' => route('api.garages.show', $this->id)
+                // 'mechanicians' => route('garage.mechanicians', $this->id),
+                // 'services' => route('garages.index', $this->id),
             ]
         ];
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Speciality;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\Resource;
 
-class SpecialityCollection extends ResourceCollection
+class SpecialityCollection extends Resource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,10 @@ class SpecialityCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [
+            'name' =>$this->name,
+            'description' =>$this->description
+        ];
     }
 }

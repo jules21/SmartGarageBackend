@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use App\Mechanician;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\Mechanician\MechanicianResource;
 use App\Http\Resources\Mechanician\MechanicianCollection;
 
@@ -37,9 +38,9 @@ class MechanicianController extends Controller
             $request,
             [
            "names" => 'required',
-           "email" =>'required',
+           'email' => 'required|string|email|max:255|unique:mechanicians',
            "phone" => 'required',
-           "location" =>'required',
+        //    "location" =>'required',
            "password" =>'required',
            "address" =>'required',
 
@@ -52,7 +53,7 @@ class MechanicianController extends Controller
             "location" => $request->input('location'),
             "address" => $request->input('address'),
             "garage_id" => $request->input('garage_id'),
-            "password" => $request->input('password')
+            "password" => Hash::make($request->input('password'))
           ]);
         if ($memechanician) {
             return response()->json(['success'=>'mechanician registered successful']);

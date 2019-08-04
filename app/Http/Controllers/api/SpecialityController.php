@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\api;
 
 
-use App\Http\Controllers\Controller;
 use App\Speciality;
 use App\Mechanician;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Speciality\SpecialityResource;
+use App\Http\Resources\Speciality\SpecialityCollection;
 
 class SpecialityController extends Controller
 {
@@ -16,31 +17,13 @@ class SpecialityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Mechanician $mechanician)
+    public function index()
     {
-        return SpecialityResource::collection($mechanician->specialities);
-        // return Speciality::all();
-        // // foreach($mechanician->specialities as $specialities)
-        // // // return $specialities;
-        // return $mechanician->specialities;
+        return SpecialityCollection::collection(Speciality::all());
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
         //
@@ -52,9 +35,9 @@ class SpecialityController extends Controller
      * @param  \App\speciality  $speciality
      * @return \Illuminate\Http\Response
      */
-    public function show(speciality $speciality)
+    public function show(Speciality $speciality)
     {
-        //
+        return new SpecialityResource(Speciality::find($speciality->id));
     }
 
     /**

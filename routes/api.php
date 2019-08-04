@@ -31,20 +31,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::group(['as'=>'api.'], function()
 {
     Route::apiResource('mechanicians', 'api\MechanicianController');
+    Route::apiResource('garages', 'api\GarageController');
+    Route::apiResource('spareparts', 'api\SparepartController');
+    Route::apiResource('services', 'api\ServiceController');
+    Route::apiResource('specialities', 'api\SpecialityController');
 });
 
-Route::apiResource('garages', 'api\GarageController');
-Route::group(['prefix'=>'mechanicians'], function()
-{
-    Route::apiResource('/{mechanician}/specialities', 'api\SpecialityController');
-});
-
-Route::apiResource('spareparts', 'api\SparepartController');
-
-
-Route::group(['prefix'=>'garages'], function()
-{
-    Route::apiResource('/{garage}/services', 'api\ServiceController');
-    Route::get('/{garage}/mechanicians', 'api\GarageController@mech')->name('garage.mechanicians');
-   
-});

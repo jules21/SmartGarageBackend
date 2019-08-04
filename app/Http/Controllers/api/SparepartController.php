@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\api;
 
 
-use App\Http\Controllers\Controller;
 use App\Sparepart;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Sparepart\SparepartResource;
 use App\Http\Resources\Sparepart\SparepartCollection;
 
 class SparepartController extends Controller
@@ -21,36 +22,15 @@ class SparepartController extends Controller
         return SparepartCollection::collection(Sparepart::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\sparepart  $sparepart
-     * @return \Illuminate\Http\Response
-     */
-    public function show(sparepart $sparepart)
+    public function show(Sparepart $sparepart)
     {
-        //
+        return new SparepartResource(Sparepart::find($sparepart->id));
     }
 
     /**

@@ -22,8 +22,8 @@ class MechanicianResource extends JsonResource
             'address' => $this->address,
             'garage' => $this->garage->name,
             'href' => [
-                'specialities' => $this->specialities->get(['name','description'])->toArray(),
-            ]
-        ];
+                'specialities' => $this->specialities
+                 ]
+            ];
     }
 }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\api;
 
 
-use App\Http\Controllers\Controller;
+use App\Service;
 
-use App\service;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Service\ServiceResource;
+use App\Http\Resources\Service\ServiceCollection;
 
 class ServiceController extends Controller
 {
@@ -16,42 +17,21 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Garage $garage)
+    public function index()
     {
-        //
-        return ServiceResource::collection($garage->services);
+        // return ServiceCollection::collection(Service::all());
+        return ServiceCollection::collection(Service::paginate(7));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function show(service $service)
+    public function show(Service $service)
     {
-        //
+        return new ServiceResource(Service::find($service->id));
     }
 
     /**
@@ -60,7 +40,7 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(service $service)
+    public function edit(Service $service)
     {
         //
     }
@@ -72,7 +52,7 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, service $service)
+    public function update(Request $request, Service $service)
     {
         //
     }
@@ -83,7 +63,7 @@ class ServiceController extends Controller
      * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(service $service)
+    public function destroy(Service $service)
     {
         //
     }

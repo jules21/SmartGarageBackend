@@ -17,7 +17,10 @@ class SparepartCollection extends Resource
         // return parent::toArray($request);
         return [
             'name' =>$this->name,
-            'address' =>$this->address
+            'address' =>$this->address,
+            'href' =>[
+                'link' => route('api.spareparts.show', $this->id)
+            ]
         ];
     }
 }
