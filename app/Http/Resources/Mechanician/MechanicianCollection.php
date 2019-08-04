@@ -21,7 +21,7 @@ class MechanicianCollection extends Resource
             'names' => $this->names,
             'email' => $this->email,
             'href' => [
-                'link' => route('mechanicians.show', $this->id)
+                'link' => route('api.mechanicians.show', $this->id)
             ]
         ];
     }

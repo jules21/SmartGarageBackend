@@ -67,9 +67,9 @@ class MechanicianController extends Controller
      * @param  \App\mechanician  $mechanician
      * @return \Illuminate\Http\Response
      */
-    public function show(mechanician $mechanician)
+    public function show(Mechanician $mechanician)
     {
-        return new MechanicianResource($mechanician);
+        return new MechanicianResource(Mechanician::find($mechanician->id));
     }
 
 

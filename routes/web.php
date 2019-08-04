@@ -11,15 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/dashboard', function () {
-    return view('layouts.master');
-});
+Route::get('/', 'HomeController@index');
 
 Route::group(['prefix'=>'admin'], function ()
-{    
+{
+    Route::get('dashboard', 'HomeController@index');
+
     Route::resource('mechanicians', 'MechanicianController');
     Route::resource('garages', 'GarageController');
 

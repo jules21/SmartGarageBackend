@@ -22,7 +22,7 @@ class MechanicianResource extends JsonResource
             'address' => $this->address,
             'garage' => $this->garage->name,
             'href' => [
-                'specialities' => route('specialities.index', $this->id)
+                'specialities' => $this->specialities->get(['name','description'])->toArray(),
             ]
         ];
     }
