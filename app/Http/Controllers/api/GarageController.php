@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\api;
 
 
-use App\Http\Controllers\Controller;
-
 use App\Garage;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Garage\GarageResource;
-use App\Http\Resources\garage\garageCollection;
+use App\Http\Resources\Garage\GarageCollection;
+use App\Http\Resources\Service\ServiceCollection;
+use App\Http\Resources\Mechanician\MechanicianCollection;
 
 class GarageController extends Controller
 {
@@ -110,5 +112,13 @@ class GarageController extends Controller
              } else {
                  return response()->json(['error'=>'delete garage failed please try again later!']);
              }
+    }
+    public function mech(Garage $garage)
+    {
+        return MechanicianCollection::collection($garage->mechanicians);
+    }
+    public function serv(Garage $garage)
+    {
+        return ServiceCollection::collection($garage->services);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Mechanician;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Speciality\SpecialityResource;
 
 class MechanicianResource extends JsonResource
 {
@@ -20,10 +21,8 @@ class MechanicianResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'address' => $this->address,
-            'garage' => $this->garage->name,
-            'href' => [
-                'specialities' => $this->specialities
-                 ]
+            'garage' => $this->garage->name          
+
             ];
     }
 }

@@ -19,10 +19,11 @@ class GarageResource extends JsonResource
         return [
             'name' =>$this->name,
             'address' =>$this->address,
-            'href' =>[
-                'mechanicians' => $this->mechanicians,
-                'services' => $this->services,
-            ]
+            'location' =>$this->location
+            // 'href' =>[
+            //     'mechanicians' => $this->mechanicians,
+            //     'services' => $this->services,
+            // ]
         ];
     }
 }

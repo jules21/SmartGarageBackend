@@ -33,7 +33,16 @@ Route::group(['as'=>'api.'], function()
     Route::apiResource('mechanicians', 'api\MechanicianController');
     Route::apiResource('garages', 'api\GarageController');
     Route::apiResource('spareparts', 'api\SparepartController');
-    Route::apiResource('services', 'api\ServiceController');
+    Route::apiResource('services', 'api\ServiceController');   
     Route::apiResource('specialities', 'api\SpecialityController');
+     
+    Route::group(['prefix'=>'mechanicians'], function(){
+        Route::get('/{mechanician}/specialities', 'api\MechanicianController@spec')->name('mechanician.specialities');
+    });
+    Route::group(['prefix'=>'garages'], function(){
+        Route::get('/{garage}/mechanicians', 'api\GarageController@mech')->name('garage.mechanicians');
+        Route::get('/{garage}/services', 'api\GarageController@serv')->name('garage.services');
+    });
+  
 });
 

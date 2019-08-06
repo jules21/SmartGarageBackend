@@ -19,6 +19,7 @@ class SpecialityController extends Controller
      */
     public function index()
     {
+        // return SpecialityCollection::collection($mechanician->specialities);
         return SpecialityCollection::collection(Speciality::all());
 
     }

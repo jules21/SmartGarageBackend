@@ -18,11 +18,14 @@ class MechanicianCollection extends Resource
         
         // return parent::toArray($request);
         return[
+            'id' => $this->id,
             'names' => $this->names,
             'email' => $this->email,
-            'href' => [
-                'link' => route('api.mechanicians.show', $this->id)
-            ]
+            'phone' => $this->phone,
+            'address' => $this->address,
+            // 'href' => [
+            //     'link' => route('api.mechanicians.show', $this->id)
+            // ]
         ];
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\Mechanician\MechanicianResource;
+use App\Http\Resources\Speciality\SpecialityCollection;
 use App\Http\Resources\Mechanician\MechanicianCollection;
 
 class MechanicianController extends Controller
@@ -138,5 +139,9 @@ class MechanicianController extends Controller
         } else {
             return response()->json(['error'=>'delete mechanician failed please try again later!']);
         }
+    }
+    public function spec(Mechanician $mechanician)
+    {
+        return SpecialityCollection::collection($mechanician->specialities);
     }
 }

@@ -18,11 +18,11 @@ class GarageCollection extends Resource
         return [
             'name' =>$this->name,
             'address' =>$this->address,
-            'href' =>[
-                'link' => route('api.garages.show', $this->id)
-                // 'mechanicians' => route('garage.mechanicians', $this->id),
-                // 'services' => route('garages.index', $this->id),
-            ]
+            'location' =>$this->location           // 'href' =>[
+            //     'link' => route('api.garages.show', $this->id)
+            //     // 'mechanicians' => route('garage.mechanicians', $this->id),
+            //     // 'services' => route('garages.index', $this->id),
+            // ]
         ];
     }
 }
