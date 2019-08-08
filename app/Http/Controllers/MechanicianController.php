@@ -35,7 +35,7 @@ class MechanicianController extends Controller
             'phone'=> $request->get('phone'),
             'address'=> $request->get('address'),
             'location'=> $request->get('location'),
-            'garage_id'=> $request->get('garage_id'),
+            'garage_id'=> 1,
 
           ]);
   if($mechanician)
