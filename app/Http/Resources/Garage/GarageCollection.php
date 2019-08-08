@@ -16,6 +16,7 @@ class GarageCollection extends Resource
     {
         // return parent::toArray($request);
         return [
+            'id' =>$this->id,
             'name' =>$this->name,
             'address' =>$this->address,
             'location' =>$this->location           // 'href' =>[
