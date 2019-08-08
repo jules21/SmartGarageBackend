@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	$('#datatable').DataTable(),
-		$('#datatable-buttons')
+	$('#datatable-buttons').DataTable(),
+		$('#datatable')
 			.DataTable({
 				lengthChange: !1,
 				buttons: [
