@@ -21,7 +21,7 @@ class CreateMechaniciansTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('location')->nullable();
-            $table->string('garage_id')->nullable();
+            $table->string('garage_id')->default(1);
             $table->timestamps();
             // $table->foreign('garage_id')->references('id')->on(garages)->onDelete(cascade);
         });
